@@ -13,21 +13,22 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name ="role")
+@DiscriminatorColumn(name = "role")
 public class Personne {
 	@Id
-	@Column(length=255)
+	@Column(length = 255)
 	private String mat;
-	@Column(length=255)
+	@Column(length = 255)
 	private String nom;
-	
-	/*@ManyToOne
-	private Absence absence;*/
-	
-	@OneToMany(mappedBy="personne")
+
+	/*
+	 * @ManyToOne
+	 * private Absence absence;
+	 */
+
+	@OneToMany(mappedBy = "personne")
 	List<Absence> absence;
 
 	public String getMat() {
@@ -46,11 +47,13 @@ public class Personne {
 		this.nom = nom;
 	}
 
-	
-
 	public Personne() {
 		super();
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Personne [absence=" + absence + ", mat=" + mat + ", nom=" + nom + "]";
+	}
+
 }
